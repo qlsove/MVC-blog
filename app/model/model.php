@@ -17,7 +17,7 @@ class Model{
 
 
 	public function connect(){
-		$this->connect=mysql_connect($this->host, $this->user, $this->password);
+		$this->connect=mysql_connect($this->host, $this->user, $this->password, $this->db);
 		mysql_select_db($this->db, $this->connect);
 		mysql_query(" SET NAMES 'utf8' ");
 	}
@@ -32,7 +32,7 @@ class Model{
 
 
 	public function get_header(){
-		$header=[];
+		$header=array();
 		$query = "SELECT * FROM categories";
 		$result=mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){
@@ -51,7 +51,7 @@ class Model{
 
 
 	public function get_all_blogs(){
-		$blogs=[];
+		$blogs=array();
 		$query = "SELECT * FROM blogs ORDER BY id";
 		$result=mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){
@@ -62,7 +62,7 @@ class Model{
 
 
 	public function get_once_category($category){
-		$blogs=[];
+		$blogs=array();
 		$query = "SELECT * FROM blogs WHERE category='".$category."' ORDER BY id";
 		$result=mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){

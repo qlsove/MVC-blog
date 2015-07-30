@@ -12,11 +12,12 @@
 			//error_reporting(0); 
 			require_once("app/controllers/controller.php");
 			require_once("app/model/model.php");
-			$blog=new Controller;
+			$blog=new Controller();
 			$result=$blog->header();?>
 			<div class="content">
 				<?php 
-				$blog->main();?>
+				$blog->main();
+				?>
 			</div>
 		</div>
 	</body>

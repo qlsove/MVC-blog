@@ -71,7 +71,7 @@ class Controller{
 		}
 		if(isset($_GET['action']) && $_GET['action']=='in_out'){
 			setcookie("login","", 1);
-			header( "Location: /index.php", true, 307);
+			header( "Location:index.php");
 		}
 	}
 
@@ -96,7 +96,7 @@ class Controller{
 			//else
 			{
 				$result=$this->connect->insert_blog($_POST['name'], $_POST['body'], $_POST['category'], $_COOKIE['login'], $_POST['tags']);
-				header( 'Location: /index.php?action=admin', true); 
+				header( 'Location: index.php?action=admin', true); 
 			}
 	}
 
@@ -111,14 +111,14 @@ class Controller{
 			//else
 			{
 				$this->connect->update($_POST['change'], $_POST['name'], $_POST['body'], $_POST['category'], $_COOKIE['login'], $_POST['tags']);
-				header( 'Location: /index.php?action=admin', true); 
+				header( 'Location: index.php?action=admin', true); 
 			}
 	}
 
 
 	public function delete(){
 		$result=$this->connect->delete($_GET['id']);
-		header( 'Location: /index.php?action=admin', true); 
+		header( 'Location: index.php?action=admin', true); 
 	}
 
 
