@@ -52,7 +52,8 @@ class Controller{
 			$function=isset($_GET['action'])? $_GET['action'] : $_POST['action'];
 				if(method_exists('Controller', $function))
 					$this->$function();
-			}*/
+			}
+		*/
 
 		}
 		
@@ -92,9 +93,7 @@ class Controller{
 				$category=$this->connect->get_header();
 				include ("app/view/insert.php");
 			}
-			if(isset($_POST['insert']))
-			//else
-			{
+			if(isset($_POST['insert'])){
 				$result=$this->connect->insert_blog($_POST['name'], $_POST['body'], $_POST['category'], $_COOKIE['login'], $_POST['tags']);
 				header( 'Location: index.php?action=admin', true); 
 			}
@@ -107,9 +106,7 @@ class Controller{
 				$category=$this->connect->get_header();
 				include ("app/view/change.php");
 			}
-			if(isset($_POST['change']))
-			//else
-			{
+			if(isset($_POST['change'])){
 				$this->connect->update($_POST['change'], $_POST['name'], $_POST['body'], $_POST['category'], $_COOKIE['login'], $_POST['tags']);
 				header( 'Location: index.php?action=admin', true); 
 			}
@@ -124,7 +121,10 @@ class Controller{
 
 	public function get_blogs(){
 		$posts=$this->connect->get_all_blogs();
-		include ("app/view/posts.php");
+			if($posts)
+				include ("app/view/posts.php");
+			else
+				echo 'Блогів не знайдено!';
 	}
 
 
