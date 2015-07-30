@@ -19,10 +19,7 @@ class Controller{
 				if(method_exists('Controller', $function))
 					$this->$function();
 			}
-		
-
 		}
-		
 		
 
 	public function in_out(){
