@@ -18,6 +18,7 @@
 				<?php 
 				$blog->main();
 				?>
+				
 			</div>
 		</div>
 	</body>

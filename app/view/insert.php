@@ -6,7 +6,7 @@
 		<script type="text/javascript">CKEDITOR.replace( 'body');</script>
 
 		<p><textarea wrap="soft"  placeholder="Перерахуйте при потребі теги до статті, розділяючи їх символом #" style="width: 1155px; height: 25px; resize: vertical" name="tags"></textarea></p>
-		<input type="hidden" name="insert" value="1">
+		<input type="hidden" name="action" value="insert">
 		Виберіть категорію:<br>
 
 		<?php

@@ -12,40 +12,6 @@ class Controller{
 
 
 	public function main(){
-		switch (true){
-
-			case (isset($_POST['in_out']) || (isset($_GET['action']) && $_GET['action']=='in_out')):
-			$this->in_out();
-			break;
-
-			case (isset($_POST['insert']) || (isset($_GET['action'])&& $_GET['action']=='insert')):
-			$this->insert();
-			break;
-
-			case (isset($_POST['change']) || (isset($_GET['action'])&& $_GET['action']=='change')):
-			$this->change();
-			break;
-
-			case (isset($_GET['action']) && $_GET['action']=='admin'):
-			$this->admin();
-			break;
-		
-			case ((isset($_GET['action'])&& $_GET['action']=='delete')):
-			$this->delete();
-			break;
-
-			case (isset($_GET['action']) && $_GET['action']=='category'):
-			$this->category(); 
-			break;
-
-			default:
-			$this->get_blogs();
-			break;
-		}
-
-
-
-		/*
 		if(!isset($_GET['action']) && !isset($_POST['action']))
 			$this->get_blogs();
 		else{
@@ -53,13 +19,17 @@ class Controller{
 				if(method_exists('Controller', $function))
 					$this->$function();
 			}
-		*/
+		
 
 		}
 		
 		
 
 	public function in_out(){
+		if(isset($_GET['action']) && $_GET['action']=='in_out'){
+			setcookie("login","", 1);
+			header( "Location:index.php");
+		}
 		if(isset($_POST['in_out'])){
 			$result=$this->connect->login($_POST["login"], $_POST["password"]);
 				if(is_array($result)){
@@ -69,10 +39,6 @@ class Controller{
 				else{
 					return "Неправильний логін або пароль";
 				} 
-		}
-		if(isset($_GET['action']) && $_GET['action']=='in_out'){
-			setcookie("login","", 1);
-			header( "Location:index.php");
 		}
 	}
 
@@ -93,7 +59,7 @@ class Controller{
 				$category=$this->connect->get_header();
 				include ("app/view/insert.php");
 			}
-			if(isset($_POST['insert'])){
+			if(isset($_POST['action']) && $_POST['action']=='insert'){
 				$result=$this->connect->insert_blog($_POST['name'], $_POST['body'], $_POST['category'], $_COOKIE['login'], $_POST['tags']);
 				header( 'Location: index.php?action=admin', true); 
 			}
@@ -106,8 +72,8 @@ class Controller{
 				$category=$this->connect->get_header();
 				include ("app/view/change.php");
 			}
-			if(isset($_POST['change'])){
-				$this->connect->update($_POST['change'], $_POST['name'], $_POST['body'], $_POST['category'], $_COOKIE['login'], $_POST['tags']);
+			if(isset($_POST['action']) && $_POST['action']=='change'){
+				$this->connect->update($_POST['id'], $_POST['name'], $_POST['body'], $_POST['category'], $_COOKIE['login'], $_POST['tags']);
 				header( 'Location: index.php?action=admin', true); 
 			}
 	}

@@ -5,8 +5,9 @@
         
         <script type="text/javascript">CKEDITOR.replace( 'body');</script>
 
-        <p><textarea wrap="soft"  placeholder="Перерахуйте при потребі теги до статті через пробіл" style="width: 1155px; height: 25px; resize: vertical" name="tags"></textarea></p>
-        <input type="hidden" name="change" value="<?=$post['id']?>">
+        <p><textarea wrap="soft"  placeholder="Перерахуйте при потребі теги до статті, розділяючи їх символом #" style="width: 1155px; height: 25px; resize: vertical" name="tags"><?=$post['tags']?></textarea></p>
+        <input type="hidden" name="action" value="change">
+        <input type="hidden" name="id" value="<?=$post['id']?>">
         Виберіть категорію:<br>
 
         <?php

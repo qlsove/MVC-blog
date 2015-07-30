@@ -110,8 +110,8 @@ class Model{
 	public static function tags($string){
 		$string=trim($string);
 		$tags= explode("#" , $string);
-			foreach($tags as $tag){
-				$tag==trim($tag);
+			foreach($tags as &$tag){
+				$tag=trim($tag);
 				}
 		return $tags;
 	}
